@@ -8,8 +8,8 @@
 
 import Foundation
 
-struct SongPro {
-    static func parse(_ lines: String) -> Song {
+public struct SongPro {
+    public static func parse(_ lines: String) -> Song {
         var song = Song()
         var currentSection: Section?
 
