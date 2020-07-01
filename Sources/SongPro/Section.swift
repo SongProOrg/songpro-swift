@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Section {
+public class Section {
     var name: String?
     var lines = [Line]()
 }

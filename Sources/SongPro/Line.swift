@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Line {
+public class Line {
     var parts = [Part]()
 }

@@ -9,7 +9,7 @@
 import Foundation
 
 struct SongPro {
-    static func parse(_ lines: String) -> Song {
+    public static func parse(_ lines: String) -> Song {
         var song = Song()
         var currentSection: Section?
 

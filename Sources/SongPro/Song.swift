@@ -8,7 +8,7 @@
 
 import Foundation
 
-class Song {
+public class Song {
     var title: String?
     var artist: String?
     var capo: String?
