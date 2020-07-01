@@ -9,16 +9,14 @@
 import Foundation
 
 public class Song {
-    var title: String?
-    var artist: String?
-    var capo: String?
-    var key: String?
-    var tempo: String?
-    var year: String?
-    var album: String?
-    var tuning: String?
-
-    var custom = [String: String]()
-
-    var sections = [Section]()
+    public var title: String?
+    public var artist: String?
+    public var capo: String?
+    public var key: String?
+    public var tempo: String?
+    public var year: String?
+    public var album: String?
+    public var tuning: String?
+    public var custom = [String: String]()
+    public var sections = [Section]()
 }
