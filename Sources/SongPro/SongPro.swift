@@ -9,6 +9,14 @@
 import Foundation
 
 public struct SongPro {
+    static let sectionRegex = try! NSRegularExpression(pattern: "#\\s*([^$]*)")
+    static let attributeRegex = try! NSRegularExpression(pattern: "@(\\w*)=([^%]*)")
+    static let customAttributeRegex = try! NSRegularExpression(pattern: "!(\\w*)=([^%]*)")
+    static let chordsAndLyricsRegex = try! NSRegularExpression(pattern: "(\\[[\\w#b/]+])?([^\\[]*)", options: .caseInsensitive)
+
+    static let measuresRegex = try! NSRegularExpression(pattern: "([\\[[\\w#b\\/]+\\]\\s]+)[|]*", options: .caseInsensitive)
+    static let chordsRegex = try! NSRegularExpression(pattern: "\\[([\\w#b\\/]+)\\]?", options: .caseInsensitive)
+
     public static func parse(_ lines: String) -> Song {
         var song = Song()
         var currentSection: Section?
@@ -27,92 +35,12 @@ public struct SongPro {
 
         return song
     }
-
-    fileprivate static func processLyricsAndChords(text: String, song: inout Song, currentSection: inout Section?) {
-        if text.isEmpty {
-            return
-        }
-
-        if currentSection == nil {
-            currentSection = Section()
-            song.sections.append(currentSection!)
-        }
-
-        let line = Line()
-
-        let regex = try! NSRegularExpression(pattern: "(\\[[\\w#b/]+])?([^\\[]*)", options: .caseInsensitive)
-
-        let matches = regex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
-
-        for match in matches {
-            let part = Part()
-
-            if let keyRange = Range(match.range(at: 1), in: text) {
-                part.chord = text[keyRange]
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                        .replacingOccurrences(of: "[", with: "")
-                        .replacingOccurrences(of: "]", with: "")
-            } else {
-                part.chord = ""
-            }
-
-            if let valueRange = Range(match.range(at: 2), in: text) {
-                part.lyric = String(text[valueRange])
-            } else {
-                part.lyric = ""
-            }
-
-            if !(part.chord == "" && part.lyric == "") {
-                line.parts.append(part)
-            }
-        }
-
-        currentSection!.lines.append(line)
-    }
-
-    fileprivate static func processSection(text: String, song: inout Song) -> Section {
-        var key: String?
-        let section = Section()
-
-        let regex = try! NSRegularExpression(pattern: "#\\s*([^$]*)")
-        if let match = regex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
-            if let keyRange = Range(match.range(at: 1), in: text) {
-                key = text[keyRange].trimmingCharacters(in: .whitespacesAndNewlines)
-                section.name = key!
-            }
-        }
-
-        song.sections.append(section)
-
-        return section;
-    }
-
-    fileprivate static func processCustomAttribute(text: String, song: inout Song) {
-        var key: String?
-        var value: String?
-
-        let regex = try! NSRegularExpression(pattern: "!(\\w*)=([^%]*)")
-        if let match = regex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
-            if let keyRange = Range(match.range(at: 1), in: text) {
-                key = text[keyRange].trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-
-            if let valueRange = Range(match.range(at: 2), in: text) {
-                value = text[valueRange].trimmingCharacters(in: .whitespacesAndNewlines)
-            }
-        }
-
-        if (key != nil && value != nil) {
-            song.custom.updateValue(value!, forKey: key!)
-        }
-    }
-
+    
     fileprivate static func processAttribute(text: String, song: inout Song) {
         var key: String?
         var value: String?
 
-        let regex = try! NSRegularExpression(pattern: "@(\\w*)=([^%]*)")
-        if let match = regex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
+        if let match = attributeRegex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
             if let keyRange = Range(match.range(at: 1), in: text) {
                 key = text[keyRange].trimmingCharacters(in: .whitespacesAndNewlines)
             }
@@ -142,5 +70,105 @@ public struct SongPro {
         default:
             break
         }
+    }
+    
+    fileprivate static func processCustomAttribute(text: String, song: inout Song) {
+        var key: String?
+        var value: String?
+
+        if let match = customAttributeRegex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
+            if let keyRange = Range(match.range(at: 1), in: text) {
+                key = text[keyRange].trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+
+            if let valueRange = Range(match.range(at: 2), in: text) {
+                value = text[valueRange].trimmingCharacters(in: .whitespacesAndNewlines)
+            }
+        }
+
+        if (key != nil && value != nil) {
+            song.custom.updateValue(value!, forKey: key!)
+        }
+    }
+    
+    fileprivate static func processSection(text: String, song: inout Song) -> Section {
+        var key: String?
+        let section = Section()
+
+        if let match = sectionRegex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
+            if let keyRange = Range(match.range(at: 1), in: text) {
+                key = text[keyRange].trimmingCharacters(in: .whitespacesAndNewlines)
+                section.name = key!
+            }
+        }
+
+        song.sections.append(section)
+
+        return section;
+    }
+
+    fileprivate static func processLyricsAndChords(text: String, song: inout Song, currentSection: inout Section?) {
+        if text.isEmpty {
+            return
+        }
+
+        if currentSection == nil {
+            currentSection = Section()
+            song.sections.append(currentSection!)
+        }
+
+        let line = Line()
+        
+        if text.starts(with: "| ") {
+            let measureMatches = measuresRegex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
+
+            var measures = [Measure]()
+            
+            for match in measureMatches {
+                if let measureRange = Range(match.range(at: 1), in: text) {
+                    let measureText = text[measureRange].trimmingCharacters(in: .whitespacesAndNewlines)
+                    let chordsMatches = chordsRegex.matches(in: measureText, range: NSRange(location: 0, length: measureText.utf16.count))
+                    
+                    var measure = Measure()
+                    measure.chords = chordsMatches.map {
+                        if let chordsRange = Range($0.range(at: 1), in: measureText) {
+                            return String(measureText[chordsRange].trimmingCharacters(in: .whitespacesAndNewlines))
+                        }
+                        
+                        return ""
+                    }
+                    measures.append(measure)
+                }
+            }
+            
+            line.measures = measures
+        } else {
+            let matches = chordsAndLyricsRegex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
+
+            for match in matches {
+                let part = Part()
+
+                if let keyRange = Range(match.range(at: 1), in: text) {
+                    part.chord = text[keyRange]
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                            .replacingOccurrences(of: "[", with: "")
+                            .replacingOccurrences(of: "]", with: "")
+                } else {
+                    part.chord = ""
+                }
+
+                if let valueRange = Range(match.range(at: 2), in: text) {
+                    part.lyric = String(text[valueRange])
+                } else {
+                    part.lyric = ""
+                }
+
+                if !(part.chord == "" && part.lyric == "") {
+                    line.parts.append(part)
+                }
+            }
+        }
+
+        currentSection!.lines.append(line)
     }
 }
