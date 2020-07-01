@@ -163,8 +163,8 @@ public struct SongPro {
                     part.lyric = ""
                 }
 
-                if !(part.chord == "" && part.lyric == "") {
-                    line.parts.append(part)
+                if !(part.isEmpty) {
+u                    line.parts.append(part)
                 }
             }
         }

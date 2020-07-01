@@ -11,4 +11,10 @@ import Foundation
 public class Part {
     public var chord: String?
     public var lyric: String?
+    
+    public var isEmpty: Bool {
+        get {
+            return chord == "" && lyric == ""
+        }
+    }
 }
