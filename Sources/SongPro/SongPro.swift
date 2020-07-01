@@ -9,7 +9,7 @@
 import Foundation
 
 struct SongPro {
-    func parse(_ lines: String) -> Song {
+    static func parse(_ lines: String) -> Song {
         var song = Song()
         var currentSection: Section?
 
@@ -28,7 +28,7 @@ struct SongPro {
         return song
     }
 
-    fileprivate func processLyricsAndChords(text: String, song: inout Song, currentSection: inout Section?) {
+    fileprivate static func processLyricsAndChords(text: String, song: inout Song, currentSection: inout Section?) {
         if text.isEmpty {
             return
         }
@@ -70,7 +70,7 @@ struct SongPro {
         currentSection!.lines.append(line)
     }
 
-    fileprivate func processSection(text: String, song: inout Song) -> Section {
+    fileprivate static func processSection(text: String, song: inout Song) -> Section {
         var key: String?
         let section = Section()
 
@@ -87,7 +87,7 @@ struct SongPro {
         return section;
     }
 
-    fileprivate func processCustomAttribute(text: String, song: inout Song) {
+    fileprivate static func processCustomAttribute(text: String, song: inout Song) {
         var key: String?
         var value: String?
 
@@ -107,7 +107,7 @@ struct SongPro {
         }
     }
 
-    fileprivate func processAttribute(text: String, song: inout Song) {
+    fileprivate static func processAttribute(text: String, song: inout Song) {
         var key: String?
         var value: String?
 

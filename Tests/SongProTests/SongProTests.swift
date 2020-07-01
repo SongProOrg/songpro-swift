@@ -2,10 +2,8 @@ import XCTest
 @testable import SongPro
 
 final class SongProTests: XCTestCase {
-    let songpro = SongPro()
-    
     func testItParsesAttributes() {
-        let song = songpro.parse("""
+        let song = SongPro.parse("""
 @title=Bad Moon Rising
 @artist=Creedence Clearwater Revival
 @capo=1st Fret
@@ -27,7 +25,7 @@ final class SongProTests: XCTestCase {
     }
 
     func testItParsesCustomAttributes() {
-        let song = songpro.parse("""
+        let song = SongPro.parse("""
 !difficulty=Easy
 !spotify_url=https://open.spotify.com/track/5zADxJhJEzuOstzcUtXlXv?si=SN6U1oveQ7KNfhtD2NHf9A
 """)
@@ -37,7 +35,7 @@ final class SongProTests: XCTestCase {
     }
     
     func testItParsesMultipleSectionNames() {
-        let song = songpro.parse("""
+        let song = SongPro.parse("""
 # Verse 1
 # Chorus
 """)
@@ -48,7 +46,7 @@ final class SongProTests: XCTestCase {
     }
 
     func testItParsesLyrics() {
-        let song = songpro.parse("I don't see! a bad, moon a-rising. (a-rising)")
+        let song = SongPro.parse("I don't see! a bad, moon a-rising. (a-rising)")
         
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines.count, 1)
@@ -57,7 +55,7 @@ final class SongProTests: XCTestCase {
     }
     
     func testItParsesLyricsWithSpecialCharacters() {
-        let song = songpro.parse("singing sömething with Röck dots")
+        let song = SongPro.parse("singing sömething with Röck dots")
 
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines.count, 1)
@@ -66,7 +64,7 @@ final class SongProTests: XCTestCase {
     }
     
     func testItParsesChords() {
-        let song = songpro.parse("[D] [D/F#] [C] [A7]")
+        let song = SongPro.parse("[D] [D/F#] [C] [A7]")
 
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines.count, 1)
@@ -82,7 +80,7 @@ final class SongProTests: XCTestCase {
     }
     
     func testItParsesChordsAndLyrics() {
-        let song = songpro.parse("[G]Don't go 'round tonight")
+        let song = SongPro.parse("[G]Don't go 'round tonight")
       
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines.count, 1)
@@ -92,7 +90,7 @@ final class SongProTests: XCTestCase {
     }
 
     func testItParsesLyricsBeforeChords() {
-        let song = songpro.parse("It's [D]bound to take your life")
+        let song = SongPro.parse("It's [D]bound to take your life")
 
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines.count, 1)
@@ -104,7 +102,7 @@ final class SongProTests: XCTestCase {
     }
 
     func testItParsesLyricsInbetweenChords() {
-        let song = songpro.parse("It's a[D]bout a [E]boy")
+        let song = SongPro.parse("It's a[D]bout a [E]boy")
       
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines.count, 1)
