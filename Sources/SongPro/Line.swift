@@ -9,5 +9,5 @@
 import Foundation
 
 public class Line {
-    var parts = [Part]()
+    public var parts = [Part]()
 }

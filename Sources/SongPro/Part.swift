@@ -9,6 +9,6 @@
 import Foundation
 
 public class Part {
-    var chord: String?
-    var lyric: String?
+    public var chord: String?
+    public var lyric: String?
 }

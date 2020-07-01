@@ -9,6 +9,6 @@
 import Foundation
 
 public class Section {
-    var name: String?
-    var lines = [Line]()
+    public var name: String?
+    public var lines = [Line]()
 }
