@@ -39,31 +39,59 @@ public struct SongPro {
         }
 
         let line = Line()
+        
+        if text.starts(with: "| ") {
+            let regex = try! NSRegularExpression(pattern: "([\\[[\\w#b\\/]+\\]\\s]+)[|]*", options: .caseInsensitive)
 
-        let regex = try! NSRegularExpression(pattern: "(\\[[\\w#b/]+])?([^\\[]*)", options: .caseInsensitive)
+            let matches = regex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
 
-        let matches = regex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
-
-        for match in matches {
-            let part = Part()
-
-            if let keyRange = Range(match.range(at: 1), in: text) {
-                part.chord = text[keyRange]
-                        .trimmingCharacters(in: .whitespacesAndNewlines)
-                        .replacingOccurrences(of: "[", with: "")
-                        .replacingOccurrences(of: "]", with: "")
-            } else {
-                part.chord = ""
+            var measures = [Measure]()
+            
+            for match in matches {
+                if let measureRange = Range(match.range(at: 1), in: text) {
+                    let measureText = text[measureRange].trimmingCharacters(in: .whitespacesAndNewlines)
+                    let regex2 = try! NSRegularExpression(pattern: "\\[([\\w#b\\/]+)\\]?", options: .caseInsensitive)
+                    let matches2 = regex2.matches(in: measureText, range: NSRange(location: 0, length: measureText.utf16.count))
+                    
+                    var measure = Measure()
+                    measure.chords = matches2.map {
+                        if let chordsRange = Range($0.range(at: 1), in: measureText) {
+                            return String(measureText[chordsRange].trimmingCharacters(in: .whitespacesAndNewlines))
+                        }
+                        
+                        return ""
+                    }
+                    measures.append(measure)
+                }
             }
+            
+            line.measures = measures
+        } else {
+            let regex = try! NSRegularExpression(pattern: "(\\[[\\w#b/]+])?([^\\[]*)", options: .caseInsensitive)
 
-            if let valueRange = Range(match.range(at: 2), in: text) {
-                part.lyric = String(text[valueRange])
-            } else {
-                part.lyric = ""
-            }
+            let matches = regex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
 
-            if !(part.chord == "" && part.lyric == "") {
-                line.parts.append(part)
+            for match in matches {
+                let part = Part()
+
+                if let keyRange = Range(match.range(at: 1), in: text) {
+                    part.chord = text[keyRange]
+                            .trimmingCharacters(in: .whitespacesAndNewlines)
+                            .replacingOccurrences(of: "[", with: "")
+                            .replacingOccurrences(of: "]", with: "")
+                } else {
+                    part.chord = ""
+                }
+
+                if let valueRange = Range(match.range(at: 2), in: text) {
+                    part.lyric = String(text[valueRange])
+                } else {
+                    part.lyric = ""
+                }
+
+                if !(part.chord == "" && part.lyric == "") {
+                    line.parts.append(part)
+                }
             }
         }
 

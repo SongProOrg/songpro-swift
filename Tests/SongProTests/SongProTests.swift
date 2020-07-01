@@ -114,4 +114,17 @@ final class SongProTests: XCTestCase {
         XCTAssertEqual(song.sections[0].lines[0].parts[2].chord, "E")
         XCTAssertEqual(song.sections[0].lines[0].parts[2].lyric, "boy")
     }
+    
+    func testItParsesChordOnlyMeasures() {
+        let song = SongPro.parse("""
+# Instrumental
+| [A] [B] | [C] | [D] [E] [F] [G] |
+""")
+        XCTAssertEqual(song.sections.count, 1)
+        XCTAssertEqual(song.sections[0].lines[0].measures.isEmpty, false)
+        XCTAssertEqual(song.sections[0].lines[0].measures.count, 3)
+        XCTAssertEqual(song.sections[0].lines[0].measures[0].chords, ["A", "B"])
+        XCTAssertEqual(song.sections[0].lines[0].measures[1].chords, ["C"])
+        XCTAssertEqual(song.sections[0].lines[0].measures[2].chords, ["D", "E", "F", "G"])
+    }
 }

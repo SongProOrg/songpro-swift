@@ -10,4 +10,5 @@ import Foundation
 
 public class Line {
     public var parts = [Part]()
+    public var measures = [Measure]()
 }
