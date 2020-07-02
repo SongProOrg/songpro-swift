@@ -149,4 +149,25 @@ final class SongProTests: XCTestCase {
         XCTAssertEqual(song.sections.count, 1)
         XCTAssertEqual(song.sections[0].lines[0].comment, "This is a comment.")
     }
+    
+    func testItParsesWholeSongs() throws {
+        let bundle = Bundle(for: type(of: self))
+
+        guard let url = bundle.url(forResource: "bad-moon-rising", withExtension: "sng") else {
+            XCTFail("Missing file: bad-moon-rising.sng")
+            return
+        }
+        
+        let bmr = try String(contentsOf: url)
+        
+        let song = SongPro.parse(bmr)
+        
+        XCTAssertEqual(song.title, "Bad Moon Rising")
+        XCTAssertEqual(song.artist, "Creedence Clearwater Revival")
+        XCTAssertEqual(song.capo, "1")
+        XCTAssertEqual(song.sections.count, 9)
+        XCTAssertEqual(song.custom["difficulty"], "Easy")
+        XCTAssertEqual(song.custom["spotify_url"], "https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA")
+        
+    }
 }
