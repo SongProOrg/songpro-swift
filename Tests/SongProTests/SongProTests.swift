@@ -1,4 +1,5 @@
 import XCTest
+import ResourceHelper
 @testable import SongPro
 
 final class SongProTests: XCTestCase {
@@ -151,15 +152,8 @@ final class SongProTests: XCTestCase {
     }
     
     func testItParsesWholeSongs() throws {
-        let bundle = Bundle(for: type(of: self))
-
-        guard let url = bundle.url(forResource: "bad-moon-rising", withExtension: "sng") else {
-            XCTFail("Missing file: bad-moon-rising.sng")
-            return
-        }
-        
-        let bmr = try String(contentsOf: url)
-        
+        let path = ResourceHelper.projectRootURL(projectRef: #file, fileName: "bad-moon-rising.sng").path
+        let bmr = try String(contentsOfFile: path)
         let song = SongPro.parse(bmr)
         
         XCTAssertEqual(song.title, "Bad Moon Rising")
@@ -168,6 +162,5 @@ final class SongProTests: XCTestCase {
         XCTAssertEqual(song.sections.count, 9)
         XCTAssertEqual(song.custom["difficulty"], "Easy")
         XCTAssertEqual(song.custom["spotify_url"], "https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA")
-        
     }
 }
