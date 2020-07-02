@@ -164,7 +164,7 @@ public struct SongPro {
                 }
 
                 if !(part.isEmpty) {
-u                    line.parts.append(part)
+                    line.parts.append(part)
                 }
             }
         }
