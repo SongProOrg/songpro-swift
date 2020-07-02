@@ -16,6 +16,7 @@ public struct SongPro {
 
     static let measuresRegex = try! NSRegularExpression(pattern: "([\\[[\\w#b\\/]+\\]\\s]+)[|]*", options: .caseInsensitive)
     static let chordsRegex = try! NSRegularExpression(pattern: "\\[([\\w#b\\/]+)\\]?", options: .caseInsensitive)
+    static let commentRegex = try! NSRegularExpression(pattern: ">\\s*([^$]*)")
 
     public static func parse(_ lines: String) -> Song {
         var song = Song()
@@ -144,6 +145,13 @@ public struct SongPro {
             }
             
             line.measures = measures
+        } else if text.starts(with: ">") {
+
+            if let match = commentRegex.firstMatch(in: text, options: [], range: NSRange(location: 0, length: text.utf16.count)) {
+                if let commentRange = Range(match.range(at: 1), in: text) {
+                    line.comment = text[commentRange].trimmingCharacters(in: .whitespacesAndNewlines)
+                }
+            }
         } else {
             let matches = chordsAndLyricsRegex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
 

@@ -139,4 +139,14 @@ final class SongProTests: XCTestCase {
         XCTAssertEqual(song.sections[0].lines[0].tablature, "|-3---5-|")
             XCTAssertEqual(song.sections[0].lines[1].tablature, "|---4---|")
     }
+    
+    func testItParsesComments() {
+        let song = SongPro.parse("""
+# Comment
+> This is a comment.
+""")
+
+        XCTAssertEqual(song.sections.count, 1)
+        XCTAssertEqual(song.sections[0].lines[0].comment, "This is a comment.")
+    }
 }
