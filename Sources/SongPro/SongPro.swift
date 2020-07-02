@@ -119,7 +119,9 @@ public struct SongPro {
 
         let line = Line()
         
-        if text.starts(with: "| ") {
+        if text.starts(with: "|-") {
+            line.tablature = text
+        } else if text.starts(with: "| ") {
             let measureMatches = measuresRegex.matches(in: text, range: NSRange(location: 0, length: text.utf16.count))
 
             var measures = [Measure]()

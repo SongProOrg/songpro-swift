@@ -127,4 +127,16 @@ final class SongProTests: XCTestCase {
         XCTAssertEqual(song.sections[0].lines[0].measures[1].chords, ["C"])
         XCTAssertEqual(song.sections[0].lines[0].measures[2].chords, ["D", "E", "F", "G"])
     }
+    
+    func testItParsesTablature() {
+        let song = SongPro.parse("""
+# Riff
+|-3---5-|
+|---4---|
+""")
+        
+        XCTAssertEqual(song.sections.count, 1)
+        XCTAssertEqual(song.sections[0].lines[0].tablature, "|-3---5-|")
+            XCTAssertEqual(song.sections[0].lines[1].tablature, "|---4---|")
+    }
 }
