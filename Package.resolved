@@ -1,0 +1,16 @@
+{
+  "object": {
+    "pins": [
+      {
+        "package": "ResourceHelper",
+        "repositoryURL": "https://github.com/eonist/ResourceHelper.git",
+        "state": {
+          "branch": "master",
+          "revision": "1c4557837cd4a6d407fbd946faf43c6869d8f0a5",
+          "version": null
+        }
+      }
+    ]
+  },
+  "version": 1
+}
