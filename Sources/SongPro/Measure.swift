@@ -7,6 +7,6 @@
 
 import Foundation
 
-public struct Measure {
+public class Measure {
     public var chords = [String]()
 }

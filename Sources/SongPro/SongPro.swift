@@ -132,7 +132,7 @@ public struct SongPro {
                     let measureText = text[measureRange].trimmingCharacters(in: .whitespacesAndNewlines)
                     let chordsMatches = chordsRegex.matches(in: measureText, range: NSRange(location: 0, length: measureText.utf16.count))
                     
-                    var measure = Measure()
+                    let measure = Measure()
                     measure.chords = chordsMatches.map {
                         if let chordsRange = Range($0.range(at: 1), in: measureText) {
                             return String(measureText[chordsRange].trimmingCharacters(in: .whitespacesAndNewlines))
