@@ -1,4 +1,4 @@
-# songpro-swift ![Build](https://github.com/SongProOrg/songpro-swift/workflows/Build/badge.svg?branch=master)
+# SongPro for Swift ![Build](https://github.com/SongProOrg/songpro-swift/workflows/Build/badge.svg?branch=master)
 
 [SongPro](https://songpro.org) is a text format for transcribing songs.
  
