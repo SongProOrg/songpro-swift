@@ -1,0 +1,560 @@
+{
+  "title": "Bad Moon Rising",
+  "artist": "Creedence Clearwater Revival",
+  "capo": "1",
+  "custom": {
+    "difficulty": "Easy",
+    "spotify_url": "https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA"
+  },
+  "sections": [
+    {
+      "name": "Intro",
+      "lines": [
+        {
+          "parts": [],
+          "measures": [
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "A",
+                "G"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Verse 1",
+      "lines": [
+        {
+          "parts": [
+            {
+              "lyric": "I see a ",
+              "chord": "D"
+            },
+            {
+              "lyric": "bad ",
+              "chord": "A"
+            },
+            {
+              "lyric": "moon a-",
+              "chord": "G"
+            },
+            {
+              "lyric": "rising",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "I see ",
+              "chord": "D"
+            },
+            {
+              "lyric": "trouble ",
+              "chord": "A"
+            },
+            {
+              "lyric": "on the ",
+              "chord": "G"
+            },
+            {
+              "lyric": "way",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "I see ",
+              "chord": "D"
+            },
+            {
+              "lyric": "earth-",
+              "chord": "A"
+            },
+            {
+              "lyric": "quakes and ",
+              "chord": "G"
+            },
+            {
+              "lyric": "lightnin'",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "I see ",
+              "chord": "D"
+            },
+            {
+              "lyric": "bad ",
+              "chord": "A"
+            },
+            {
+              "lyric": "times to-",
+              "chord": "G"
+            },
+            {
+              "lyric": "day",
+              "chord": "D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Riff",
+      "lines": [
+        {
+          "parts": [],
+          "tablature": "|-3---5-|"
+        },
+        {
+          "parts": [],
+          "tablature": "|---4---|"
+        }
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        {
+          "parts": [
+            {
+              "lyric": "Don't go 'round tonight",
+              "chord": "G"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "It's ",
+              "chord": ""
+            },
+            {
+              "lyric": "bound to take your life",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "There's a ",
+              "chord": "A7"
+            },
+            {
+              "lyric": "bad moon on the ",
+              "chord": "G"
+            },
+            {
+              "lyric": "rise",
+              "chord": "D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Verse 2",
+      "lines": [
+        {
+          "parts": [
+            {
+              "lyric": "I hear ",
+              "chord": "D"
+            },
+            {
+              "lyric": "hurri-",
+              "chord": "A"
+            },
+            {
+              "lyric": "canes a-",
+              "chord": "G"
+            },
+            {
+              "lyric": "blowing",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "I know the ",
+              "chord": "D"
+            },
+            {
+              "lyric": "end is ",
+              "chord": "A"
+            },
+            {
+              "lyric": "coming ",
+              "chord": "G"
+            },
+            {
+              "lyric": "soon",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "I fear ",
+              "chord": "D"
+            },
+            {
+              "lyric": "rivers ",
+              "chord": "A"
+            },
+            {
+              "lyric": "over ",
+              "chord": "G"
+            },
+            {
+              "lyric": "flowing",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "I hear the ",
+              "chord": "D"
+            },
+            {
+              "lyric": "voice of ",
+              "chord": "A"
+            },
+            {
+              "lyric": "rage and ",
+              "chord": "G"
+            },
+            {
+              "lyric": "ruin",
+              "chord": "D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        {
+          "parts": [
+            {
+              "lyric": "Don't go 'round tonight",
+              "chord": "G"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "It's ",
+              "chord": ""
+            },
+            {
+              "lyric": "bound to take your life",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "There's a ",
+              "chord": "A7"
+            },
+            {
+              "lyric": "bad moon on the ",
+              "chord": "G"
+            },
+            {
+              "lyric": "rise",
+              "chord": "D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Solo",
+      "lines": [
+        {
+          "parts": [],
+          "measures": [
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "A",
+                "G"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "parts": [],
+          "measures": [
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "A",
+                "G"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "parts": [],
+          "measures": [
+            {
+              "chords": [
+                "G"
+              ]
+            },
+            {
+              "chords": [
+                "G"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            }
+          ]
+        },
+        {
+          "parts": [],
+          "measures": [
+            {
+              "chords": [
+                "A7"
+              ]
+            },
+            {
+              "chords": [
+                "G"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            },
+            {
+              "chords": [
+                "D"
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Verse 3",
+      "lines": [
+        {
+          "parts": [
+            {
+              "lyric": "I hope you ",
+              "chord": "D"
+            },
+            {
+              "lyric": "got your ",
+              "chord": "A"
+            },
+            {
+              "lyric": "things to-",
+              "chord": "G"
+            },
+            {
+              "lyric": "gether",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "Hope you are ",
+              "chord": "D"
+            },
+            {
+              "lyric": "quite pre-",
+              "chord": "A"
+            },
+            {
+              "lyric": "pared to ",
+              "chord": "G"
+            },
+            {
+              "lyric": "die",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "Look's like we're ",
+              "chord": "D"
+            },
+            {
+              "lyric": "in for ",
+              "chord": "A"
+            },
+            {
+              "lyric": "nasty ",
+              "chord": "G"
+            },
+            {
+              "lyric": "weather",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "One eye is ",
+              "chord": "D"
+            },
+            {
+              "lyric": "taken ",
+              "chord": "A"
+            },
+            {
+              "lyric": "for an ",
+              "chord": "G"
+            },
+            {
+              "lyric": "eye",
+              "chord": "D"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chorus",
+      "lines": [
+        {
+          "parts": [
+            {
+              "lyric": "Oh ",
+              "chord": ""
+            },
+            {
+              "lyric": "don't go 'round tonight",
+              "chord": "G"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "It's ",
+              "chord": ""
+            },
+            {
+              "lyric": "bound to take your life",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "There's a ",
+              "chord": "A7"
+            },
+            {
+              "lyric": "bad moon on the ",
+              "chord": "G"
+            },
+            {
+              "lyric": "rise",
+              "chord": "D"
+            }
+          ]
+        },
+        {
+          "parts": [
+            {
+              "lyric": "There's a ",
+              "chord": "A7"
+            },
+            {
+              "lyric": "bad moon on the ",
+              "chord": "G"
+            },
+            {
+              "lyric": "rise",
+              "chord": "D"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

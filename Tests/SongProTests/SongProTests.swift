@@ -163,4 +163,27 @@ final class SongProTests: XCTestCase {
         XCTAssertEqual(song.custom["difficulty"], "Easy")
         XCTAssertEqual(song.custom["spotify_url"], "https://open.spotify.com/track/20OFwXhEXf12DzwXmaV7fj?si=cE76lY5TT26fyoNmXEjNpA")
     }
+    
+    func testItConvertsToJson() throws {
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = .prettyPrinted
+
+        let textPath = ResourceHelper.projectRootURL(projectRef: #file, fileName: "bad-moon-rising.sng").path
+        let text = try String(contentsOfFile: textPath)
+
+        let jsonPath = ResourceHelper.projectRootURL(projectRef: #file, fileName: "bad-moon-rising.json").path
+        let expectedJson = try String(contentsOfFile: jsonPath)
+        
+        let song = SongPro.parse(text);
+
+        let data = try encoder.encode(song)
+        let actualJson = String(data: data, encoding: .utf8)!
+            
+//        XCTAssertEqual(actualJson, expectedJson)
+
+        let decoder = JSONDecoder()
+        let actualObject = try decoder.decode(Song.self, from: actualJson.data(using: .utf8)!)
+        let expectedObject = try decoder.decode(Song.self, from: expectedJson.data(using: .utf8)!)
+        XCTAssertEqual(actualObject, expectedObject)
+    }
 }

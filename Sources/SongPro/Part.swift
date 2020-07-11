@@ -8,7 +8,7 @@
 
 import Foundation
 
-public class Part {
+public class Part: Codable, Equatable {
     public var chord: String?
     public var lyric: String?
     
@@ -16,5 +16,10 @@ public class Part {
         get {
             return chord == "" && lyric == ""
         }
+    }
+    
+    public static func == (lhs: Part, rhs: Part) -> Bool {
+        return lhs.chord == rhs.chord &&
+            lhs.lyric == rhs.lyric
     }
 }

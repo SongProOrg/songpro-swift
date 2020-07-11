@@ -8,7 +8,12 @@
 
 import Foundation
 
-public class Section {
+public class Section: Codable, Equatable {
     public var name: String?
     public var lines = [Line]()
+
+    public static func == (lhs: Section, rhs: Section) -> Bool {
+        return lhs.name == rhs.name &&
+            lhs.lines == rhs.lines
+    }
 }

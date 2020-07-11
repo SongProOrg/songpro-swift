@@ -7,6 +7,10 @@
 
 import Foundation
 
-public class Measure {
+public class Measure: Codable, Equatable {
     public var chords = [String]()
+    
+    public static func == (lhs: Measure, rhs: Measure) -> Bool {
+        return lhs.chords == rhs.chords
+    }
 }

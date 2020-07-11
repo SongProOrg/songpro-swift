@@ -8,9 +8,16 @@
 
 import Foundation
 
-public class Line {
+public class Line: Codable, Equatable {
     public var parts = [Part]()
     public var measures = [Measure]()
     public var tablature: String?
     public var comment: String?
+    
+    public static func == (lhs: Line, rhs: Line) -> Bool {
+        return lhs.parts == rhs.parts &&
+            lhs.measures == rhs.measures &&
+            lhs.tablature == rhs.tablature &&
+            lhs.comment == rhs.comment
+    }
 }
